@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOUDLY | 个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 随机风景画背景 */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+        }
+
+        /* 暗色遮罩，保证文字可读 */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: -1;
+        }
+
+        .card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+        }
+
+        .name {
+            font-size: 44px;
+            font-weight: 800;
+            letter-spacing: 6px;
+            color: #ffffff;
+            margin-bottom: 14px;
+        }
+
+        .desc {
+            color: #eaeaea;
+            font-size: 16px;
+            margin-bottom: 32px;
+            letter-spacing: 2px;
+        }
+
+        .link-item {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 12px;
+            padding: 14px;
+            margin: 14px 0;
+            background: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.22);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            position: fixed;
+            bottom: 16px;
+            width: 100%;
+            text-align: center;
+            color: #cfcfcf;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="name">LOUDLY</div>
+    <p class="desc" id="randomText"></p>
+
+    <a class="link-item" href="#">我的作品</a>
+    <a class="link-item" href="#">社交账号</a>
+    <a class="link-item" href="#">联系我</a>
+</div>
+
+<footer>©2022-2026 LOUDLY co.Ltd</footer>
+
+<script>
+    // 风景画背景图组，可自行替换图片链接
+    const landscapes = [
+        "https://picsum.photos/id/1018/1920/1080",
+        "https://picsum.photos/id/1015/1920/1080",
+        "https://picsum.photos/id/1019/1920/1080",
+        "https://picsum.photos/id/1016/1920/1080",
+        "https://picsum.photos/id/1021/1920/1080",
+        "https://picsum.photos/id/1039/1920/1080",
+        "https://picsum.photos/id/1043/1920/1080",
+        "https://picsum.photos/id/1044/1920/1080"
+    ];
+
+    // 随机选背景
+    const randomBg = landscapes[Math.floor(Math.random() * landscapes.length)];
+    document.body.style.setProperty("--bg-image", `url(${randomBg})`);
+
+    // 随机文字 二选一
+    const textList = [
+        "loudly co.Ltd 万岁！！！",
+        "昔人已乘黄鹤去，此地空余黄鹤楼"
+    ];
+    const randomIndex = Math.floor(Math.random() * textList.length);
+    document.getElementById("randomText").innerText = textList[randomIndex];
+</script>
+
+</body>
+</html>
